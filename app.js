@@ -2,7 +2,7 @@ $(document).ready(function() {
 
     $( "#target" ).submit(function( event ) {
       NowDrop.userName = $('#lastfm-username').val();
-      console.log(NowDrop.userName);
+    //   console.log(NowDrop.userName);
       $('#form-container').fadeOut("slow");
       event.preventDefault();
     });
@@ -41,6 +41,7 @@ NowDrop.ajax = function() {
                 var songStatus = '';
                 var songCoverElem = '';
                 var songCoverImg = '';
+                var pageTitle = '';
                 var counter = 1; //workaround to show only the now playing song, thanks lastfm...
 
                 $.each(data.recenttracks.track, function(i, item) {
@@ -50,9 +51,18 @@ NowDrop.ajax = function() {
                         songCoverImg += item.image[3]["#text"];
                         if (songCoverImg) {
                             songCoverElem += '<img src="' + songCoverImg + '" />';
-                            $('#song-coverart').html(songCoverElem);
+                            var image = new Image();
+                            image.src = songCoverImg;
+                            image.onload = function () {
+                            //    $('#song-coverart').html(songCoverElem);
+                               $('#song-coverart img').attr("src", songCoverImg);
+                            //    $("#song-coverart img").fadeOut(500, function() {
+                            //        $("#song-coverart img").attr("src",songCoverImg);
+                            //    }).fadeIn(500);
+
+                            }
                         } else {
-                            var url = "https://api.spotify.com/v1/search?query=" + item.name + "&offset=0&limit=1&type=track";
+                            var url = encodeURI("https://api.spotify.com/v1/search?query=" + item.name + " - " + item.artist['#text'] + "&offset=0&limit=1&type=track,artist");
                             $.get(url, function(data) {
                             // Set cover image if one is found
                                 if (data.tracks.total > 0) {
@@ -70,6 +80,7 @@ NowDrop.ajax = function() {
                         songInfo += ' - ' + item.album['#text'] + '</a>';
 
                         $('#song-name').html(songInfo);
+                        pageTitle = item.name + ' - ' + item.album['#text'];
                         songAlbum += item.artist['#text'];
                         if (item["@attr"]) {
                         // now playing or last played depending on the variable
@@ -83,6 +94,7 @@ NowDrop.ajax = function() {
                     counter++;
             });
             // $('#song-coverart').html(songCoverElem);
+            document.title = pageTitle;
             $('#song-status').html(songStatus);
             // $('#song-name').html(songInfo);
             $('#song-album').html(songAlbum);
@@ -97,4 +109,4 @@ NowDrop.ajax = function() {
 }
 
 //save the username locally and change the url
-//hide the form
+//make Page Title dynamic
