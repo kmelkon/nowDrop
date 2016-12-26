@@ -1,0 +1,75 @@
+<html>
+
+<head>
+    <title>NowDrop</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="quantize.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.0.1/color-thief.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.2.3/css/bulma.min.css" type="text/css" />
+    <link rel="stylesheet" href="main.css" type="text/css" />
+</head>
+
+<body>
+
+
+    <section class="hero  is-fullheight is-dark is-bold">
+
+        <div class="hero-head">
+            <div class="container">
+              <div id="song-container" class="song-container">
+                  <div id="song-coverart" class="song-coverart">
+                  </div>
+                  <div id="song-info" class="song-info">
+                    <div id="song-status" class="song-status">
+                    </div>
+                    <div id="song-name" class="song-name">
+                    </div>
+                    <div id="song-album" class="song-album">
+                    </div>
+                  </div>
+              </div>
+              <div id="error"></div>
+
+            </div>
+
+        </div>
+
+
+      <div class="hero-body">
+        <div class="container">
+          <div class="lastfm-form-container" id="form-container">
+              <form id="target" class="lastfm-form" action="index.html" method="post">
+                  <label class="label username-label title is-2">
+                      My Last.fm username is
+                  </label>
+                  <p class="control has-addons">
+                      <input class="input is-large" type="text" id="lastfm-username" value="" name="username" placeholder="Qahp">
+                      <a class="button is-primary is-large is-outlined" type="submit">
+                          Go
+                      </a>
+                  </p>
+              </form>
+          </div>
+        </div>
+      </div>
+
+        <div class="hero-foot">
+            <div class="container">
+
+            </div>
+
+        </div>
+
+    </section>
+    <div class="main-container" id="main-container">
+
+
+
+    </div>
+
+
+
+    <script src="app.js"></script>
+</body>
+
+</html>
