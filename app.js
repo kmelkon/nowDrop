@@ -25,7 +25,7 @@ NowDrop.ajax = function() {
     if (NowDrop.userName) {
         $.ajax({
             type: 'POST',
-            url: 'http://ws.audioscrobbler.com/2.0/',
+            url: 'https://ws.audioscrobbler.com/2.0/',
             data: 'method=user.getRecentTracks&' +
                 // 'user=karam2melkon&' +
                 'user=' + NowDrop.userName + '&' +
@@ -109,4 +109,3 @@ NowDrop.ajax = function() {
 }
 
 //save the username locally and change the url
-//make Page Title dynamic
